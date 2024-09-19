@@ -2,12 +2,33 @@ import streamlit as st
 from dotenv import load_dotenv
 from openai import OpenAI
 
+from document_loader import DocumentLoader
+
 load_dotenv()
 
 SUPPORTED_FILE_EXT = ["csv", "txt", "json"]
 
 def main():
     st.title("💬 E-commerce Chatbot")
+
+    # Initialize the DocumentLoader to handle file uploads
+    document_loader = DocumentLoader()
+
+    # File uploader component in the sidebar allowing multiple file uploads
+    uploaded_files = st.sidebar.file_uploader(
+        label='Upload files',
+        type=list(document_loader.loader_config.keys()),
+        accept_multiple_files=True
+    )
+
+    # Display an informational message to the user if no files have been uploaded.
+    if not uploaded_files:
+        st.info('Please upload documents to continue.')
+        st.stop()
+
+    # If files are uploaded, load them using the DocumentLoader
+    docs = document_loader.load_multiples(uploaded_files)
+    print(docs)
 
     if "messages" not in st.session_state:
         st.session_state["messages"] = [{"role": "assistant", "content": "How can I help you?"}]
