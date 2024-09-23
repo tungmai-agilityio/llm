@@ -9,3 +9,61 @@ A: Our return policy varies by product category. Generally, you can return most 
 
 Q: Do you offer gift wrapping services?
 A: Yes, we offer gift wrapping services for an additional fee during the checkout process.
+
+Q: What is Amazon Prime?
+A: Amazon Prime is a membership program that offers fast, free delivery on eligible items, exclusive access to movies, TV shows, ad-free music, Kindle books, and more.
+
+Q: How do I return an item?
+A: To return an item, go to "Your Orders" in your account, select the item you want to return, and follow the on-screen instructions to complete the return process.
+makefile
+
+Q: What payment methods does Amazon accept?
+A: Amazon accepts major credit and debit cards, including Visa, Mastercard, American Express, and Discover. You can also use Amazon gift cards and Amazon Pay for purchases.
+
+Q: How can I cancel or change my order?
+A: You can cancel or modify an order before it enters the shipping process. Go to "Your Orders" and select the order to cancel or make changes.
+
+Q: What are Amazon's shipping options?
+A: Amazon offers various shipping options, including Standard Shipping, Two-Day Shipping, and Same-Day Delivery for Prime members. Shipping options vary depending on the item and location.
+
+Q: How do I contact Amazon customer service?
+A: You can contact Amazon customer service through the "Help" section on the website. You can chat with a representative or request a call to assist with your inquiry.
+
+Q: What is Amazon's refund policy?
+A: Amazon typically issues refunds once the returned item has been received. Refunds are processed to the original payment method within 3-5 business days.
+
+Q: How do I change my account information?
+A: To update your account details, go to "Your Account" and select the section you want to edit, such as your address, payment methods, or password.
+
+Q: Does Amazon offer gift wrapping?
+A: Yes, Amazon offers gift-wrapping services for eligible items. You can select this option during checkout for an additional fee.
+
+Q: What is Subscribe & Save?
+A: Subscribe & Save is a program that allows you to set up automatic deliveries for eligible items and receive discounts on each subscription order.
+
+Q: How do I use an Amazon gift card?
+A: To use an Amazon gift card, enter the gift card code during checkout. The card balance will be applied to your order total.
+
+Q: Can I use Amazon internationally?
+A: Yes, Amazon ships to many international destinations, although some products may not be available for shipping outside of the U.S. Check product availability and international shipping options during checkout.
+
+Q: What is the Amazon Marketplace?
+A: The Amazon Marketplace is a platform where third-party sellers can list and sell products. You can shop for items sold directly by Amazon or from independent sellers.
+
+Q: How do I leave feedback for a seller?
+A: After your order is delivered, you can leave feedback by going to "Your Orders," selecting the product, and clicking "Leave Seller Feedback."
+
+Q: What are Amazon Coupons?
+A: Amazon Coupons provide discounts on selected products. You can apply the coupon during checkout to get instant savings.
+
+Q: What is Amazon Fresh?
+A: Amazon Fresh is a grocery delivery service offering fresh produce, dairy, and other household essentials delivered to your door. It is available in select areas.
+
+Q: How do I qualify for free shipping on Amazon?
+A: Free shipping is available for orders over a certain amount or for Amazon Prime members on eligible items. The minimum order amount varies by location.
+
+Q: What is Amazon's policy on counterfeit items?
+A: Amazon has a strict policy against counterfeit products. If you receive a counterfeit item, contact customer service to report the issue and request a refund or replacement.
+
+Q: How do I subscribe to Amazon Prime Video?
+A: To subscribe to Prime Video, you can join Amazon Prime, which includes access to Prime Video as part of your membership. You can stream thousands of movies and TV shows.
