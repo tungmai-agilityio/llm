@@ -1,6 +1,6 @@
-from langchain_chroma import Chroma
 from langchain_openai import OpenAIEmbeddings
 from langchain_text_splitters import RecursiveCharacterTextSplitter
+from langchain_community.vectorstores import FAISS
 
 def configure_retriever(docs):
     # Split documents
@@ -9,7 +9,7 @@ def configure_retriever(docs):
 
     # Create embeddings and store in vector db
     embeddings = OpenAIEmbeddings()
-    vector_db = Chroma.from_documents(splits, embeddings)
+    vector_db = FAISS.from_documents(splits, embeddings)
 
     # Define retriever
     retriever = vector_db.as_retriever()

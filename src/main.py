@@ -8,6 +8,7 @@ from document_loader import DocumentLoader
 
 load_dotenv()
 SUPPORTED_FILE_EXT = ['csv', 'txt', 'json']
+st.set_page_config('E-Commerce Platform')
 
 # Initialize session state
 if 'chain' not in st.session_state:
@@ -15,65 +16,78 @@ if 'chain' not in st.session_state:
 if 'files' not in st.session_state:
     st.session_state.files = None
 
+def create_chain(files):
+    # Initialize the DocumentLoader to handle file uploads
+    document_loader = DocumentLoader()
+    # If files are uploaded, load them using the DocumentLoader
+    docs = document_loader.load_multiples(files)
+    # Construct retriever
+    retriever = configure_retriever(docs)
+    llm = ChatOpenAI(model='gpt-3.5-turbo', temperature=0.7)
+    # Create QA chain
+    chain = create_qa_history_chain(llm, retriever)
+    return chain
+
+def generate_response(input):
+    response = st.session_state.chain.invoke(
+        {
+            'input': input,
+            'chat_history': st.session_state.messages
+        },
+        config= {
+            'configurable': {
+                'session_id': '123'
+            }
+        }
+    )['answer']
+
+    return response
+
 def main():
     st.title('💬 E-commerce Chatbot')
 
-    # Initialize the DocumentLoader to handle file uploads
-    document_loader = DocumentLoader()
+    try:
+        # File uploader component in the sidebar allowing multiple file uploads
+        uploaded_files = st.sidebar.file_uploader(
+            label='Upload files',
+            type=SUPPORTED_FILE_EXT,
+            accept_multiple_files=True
+        )
 
-    # File uploader component in the sidebar allowing multiple file uploads
-    uploaded_files = st.sidebar.file_uploader(
-        label='Upload files',
-        type=list(document_loader.loader_config.keys()),
-        accept_multiple_files=True
-    )
+        # Display an informational message to the user if no files have been uploaded.
+        if not uploaded_files:
+            st.info('Please upload documents to continue.')
+            st.stop()
 
-    # Display an informational message to the user if no files have been uploaded.
-    if not uploaded_files:
-        st.info('Please upload documents to continue.')
-        st.stop()
+        # NOTE: By default Streamlit reruns the entire script when there's user input.
+        # Only recreate the chain if it was not created yet or a new file is uploaded.
+        if st.session_state.chain is None or st.session_state.files != uploaded_files:
+            st.session_state.chain = create_chain(uploaded_files)
+            st.session_state.files = uploaded_files
+            print('Initialized chain')
 
-    # NOTE: By default Streamlit reruns the entire script when there's user input.
-    # Only recreate the chain if it was not created yet or a new file is uploaded.
-    if st.session_state.chain is None or st.session_state.files != uploaded_files:
-        print('Initiating Chain')
-        # If files are uploaded, load them using the DocumentLoader
-        docs = document_loader.load_multiples(uploaded_files)
-        # Construct retriever
-        retriever = configure_retriever(docs)
-        llm = ChatOpenAI(model='gpt-3.5-turbo')
+        if 'messages' not in st.session_state:
+            st.session_state['messages'] = [{'role': 'assistant', 'content': 'How can I help you?'}]
 
-        # Save the state
-        st.session_state.chain = create_qa_history_chain(llm, retriever)
-        st.session_state.files = uploaded_files
+        for msg in st.session_state.messages:
+            st.chat_message(msg['role']).write(msg['content'])
 
-    if 'messages' not in st.session_state:
-        st.session_state['messages'] = [{'role': 'assistant', 'content': 'How can I help you?'}]
+        # User-provided prompt
+        if input := st.chat_input():
+            st.session_state.messages.append({'role': 'user', 'content': input})
+            with st.chat_message('user'):
+                st.write(input)
 
-    for msg in st.session_state.messages:
-        st.chat_message(msg['role']).write(msg['content'])
+        # Generate a new response if last message is not from assistant
+        if st.session_state.messages[-1]['role'] != 'assistant':
+            with st.chat_message('assistant'):
+                with st.spinner('Generating the response...'):
+                    response = generate_response(input)
+                    st.write(response)
 
-    if prompt := st.chat_input('Message'):
-        # Append user's message to history and show on the UI
-        st.session_state.messages.append({'role': 'user', 'content': prompt})
-        st.chat_message('user').write(prompt)
+            st.session_state.messages.append({'role': 'assistant', 'content': response})
+    except Exception as e:
+        st.error('Error: ' + str(e))
 
-        # Get response
-        response = st.session_state.chain.invoke(
-            {
-                'input': prompt,
-                'chat_history': st.session_state.messages
-            },
-            config= {
-                'configurable': {
-                    'session_id': '123'
-                }
-            }
-        )['answer']
-
-        # Append response message to history and show on the UI
-        st.session_state.messages.append({'role': 'assistant', 'content': response})
-        st.chat_message('assistant').write(response)
-
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()
