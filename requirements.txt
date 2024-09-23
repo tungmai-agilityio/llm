@@ -3,6 +3,7 @@ langchain-core
 langchain-community
 langchain-openai
 langchain-chroma
+langsmith
 openai
 python-dotenv
 streamlit

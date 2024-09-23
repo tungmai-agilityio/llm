@@ -28,7 +28,14 @@
 - Create `.env` file and add environment variables
 
   ```
-  OPENAI_API_KEY=
+  OPENAI_API_KEY=<openai-api-key>
+
+  # LangSmith environment
+  LANGCHAIN_TRACING_V2=true
+  LANGCHAIN_ENDPOINT="https://api.smith.langchain.com"
+  LANGCHAIN_API_KEY="<your-api-key>"
+  LANGCHAIN_PROJECT="<your-project-name>"
+
   ```
 
 - Install packages
