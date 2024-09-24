@@ -22,14 +22,14 @@ def create_qa_chain(llm):
         "You are an E-commerce assistant for question-answering tasks. "
         "Use the following pieces of retrieved context to answer "
         "the question. If you don't know the answer, say that you "
-        "don't know. Use three sentences maximum and keep the "
-        "answer concise."
+        "don't know. Keep the answer concise and clear."
         "\n\n"
         "{context}"
     )
     prompt = ChatPromptTemplate.from_messages(
         [
             ("system", system_prompt),
+            MessagesPlaceholder("chat_history"),
             ("human", "{input}"),
         ]
     )

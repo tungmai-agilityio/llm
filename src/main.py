@@ -23,7 +23,7 @@ def create_chain(files):
     docs = document_loader.load_multiples(files)
     # Construct retriever
     retriever = configure_retriever(docs)
-    llm = ChatOpenAI(model='gpt-3.5-turbo', temperature=0.7)
+    llm = ChatOpenAI(model='gpt-3.5-turbo')
     # Create QA chain
     chain = create_qa_history_chain(llm, retriever)
     return chain
@@ -81,11 +81,9 @@ def main():
         # Generate a new response if last message is not from assistant
         if st.session_state.messages[-1]['role'] != 'assistant':
             with st.chat_message('assistant'):
-                with st.spinner('Generating the response...'):
-                    response = generate_response(input)
-                    st.write(response)
-
-            st.session_state.messages.append({'role': 'assistant', 'content': response})
+                response = generate_response(input)
+                st.write(response)
+                st.session_state.messages.append({'role': 'assistant', 'content': response})
     except Exception as e:
         st.error('Error: ' + str(e))
 

@@ -12,5 +12,7 @@ def configure_retriever(docs):
     vector_db = FAISS.from_documents(splits, embeddings)
 
     # Define retriever
-    retriever = vector_db.as_retriever()
+    retriever = vector_db.as_retriever(
+        search_kwargs={'k': 5}
+    )
     return retriever
