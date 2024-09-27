@@ -1,0 +1,25 @@
+- vars:
+    query: "Please provide a step-by-step guide in bullet format on how to make an order"
+    context: files/order-process.json
+  assert:
+    - type: icontains-any
+      value:
+        - 'Browse and select products'
+        - 'Add products to cart'
+        - 'Proceed to checkout'
+        - 'Enter shipping and billing information'
+        - 'Choose payment method'
+        - 'Review and confirm order'
+        - 'Order placed successfully'
+
+- vars:
+    query: "List all supported payment methods for order"
+    context: files/order-process.json
+  assert:
+
+    - type: icontains-all
+      value:
+        - 'Card'
+        - 'PayPal'
+        - 'Apple Pay'
+        - 'Google Pay'

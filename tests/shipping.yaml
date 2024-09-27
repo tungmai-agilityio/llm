@@ -1,0 +1,19 @@
+- vars:
+    query: “What's the minimum order amount to qualify for free shipping?”
+    context: files/shipping-info.text
+  assert:
+    - type: contains
+      value: '$50'
+    # Pass if the LLM call costs less than $0.0002
+    - type: cost
+      threshold: 0.0002
+
+- vars:
+    query: "List all shipping carriers"
+    context: files/shipping-info.txt
+  assert:
+    - type: icontains-all
+      value:
+        - 'FedEx'
+        - 'UPS'
+        - 'USPS'

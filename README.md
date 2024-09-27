@@ -51,3 +51,11 @@
   ```bash
   streamlit run src/main.py
   ```
+
+## Evaluation
+
+  ```bash
+  promptfoo eval
+  ```
+
+Afterwards, you can view the results by running `promptfoo view`

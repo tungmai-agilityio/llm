@@ -1,0 +1,14 @@
+# Learn more about building a configuration: https://promptfoo.dev/docs/configuration/guide
+description: "My practice eval"
+
+prompts:
+  - tests/prompts.json
+
+providers:
+  - "openai:gpt-3.5-turbo"
+
+tests:
+  - tests/faqs.yaml
+  - tests/return-and-refunds.yaml
+  - tests/order-process.yaml
+  - tests/shipping.yaml

@@ -1,0 +1,8 @@
+- vars:
+    query: "What is the policy to return an Electronics product?"
+    context: files/return-and-refunds.csv
+  assert:
+    - type: icontains-all
+      value:
+        - '30 days'
+        - 'original packaging'
