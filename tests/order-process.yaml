@@ -16,10 +16,10 @@
     query: "List all supported payment methods for order"
     context: files/order-process.json
   assert:
-
     - type: icontains-all
       value:
-        - 'Card'
+        - 'Credit'
+        - 'Debit'
         - 'PayPal'
         - 'Apple Pay'
         - 'Google Pay'

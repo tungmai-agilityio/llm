@@ -9,8 +9,8 @@
       threshold: 0.0002
 
 - vars:
-    query: "List all shipping carriers"
-    context: files/shipping-info.txt
+    query: "List supported shipping carriers"
+    context: files/shipping-info.text
   assert:
     - type: icontains-all
       value:

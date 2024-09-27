@@ -6,3 +6,15 @@
       value:
         - '30 days'
         - 'original packaging'
+
+- vars:
+    query: "List the return policy for all product categories"
+    context: files/return-and-refunds.csv
+  assert:
+    - type: icontains-any
+      value:
+        - 'Electronics'
+        - 'Clothing'
+        - 'Home & Kitchen'
+        - 'Beauty & Personal Care'
+        - 'Books & Media'
