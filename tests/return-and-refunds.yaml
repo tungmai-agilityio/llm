@@ -1,6 +1,6 @@
 - vars:
     query: "What is the policy to return an Electronics product?"
-    context: files/return-and-refunds.csv
+    context: file://files/returns-and-refunds.csv
   assert:
     - type: icontains-all
       value:
@@ -9,7 +9,7 @@
 
 - vars:
     query: "List the return policy for all product categories"
-    context: files/return-and-refunds.csv
+    context: file://files/returns-and-refunds.csv
   assert:
     - type: icontains-any
       value:

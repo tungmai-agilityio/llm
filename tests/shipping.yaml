@@ -1,6 +1,6 @@
 - vars:
     query: “What's the minimum order amount to qualify for free shipping?”
-    context: files/shipping-info.text
+    context: file://files/shipping-info.txt
   assert:
     - type: contains
       value: '$50'
@@ -10,7 +10,7 @@
 
 - vars:
     query: "List supported shipping carriers"
-    context: files/shipping-info.text
+    context: file://files/shipping-info.txt
   assert:
     - type: icontains-all
       value:

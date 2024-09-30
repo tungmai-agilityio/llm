@@ -1,6 +1,6 @@
 - vars:
     query: "Please provide a step-by-step guide in bullet format on how to make an order"
-    context: files/order-process.json
+    context: file://files/order-process.json
   assert:
     - type: icontains-any
       value:
@@ -14,7 +14,7 @@
 
 - vars:
     query: "List all supported payment methods for order"
-    context: files/order-process.json
+    context: file://files/order-process.json
   assert:
     - type: icontains-all
       value:
