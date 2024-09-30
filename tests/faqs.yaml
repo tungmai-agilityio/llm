@@ -1,7 +1,14 @@
 - vars:
-    query: "Do you offer gift wrapping services?"
+    query: 'Do you offer gift wrapping services?'
     context: file://files/faqs.txt
   assert:
     - type: similar
       value: 'Yes, we offer gift wrapping services for an additional fee during the checkout process.'
-      threshold: 0.80
+      threshold: 0.90
+
+- vars:
+    query: 'Can I cancel my order after it has been placed?'
+    context: file://files/faqs.txt
+  assert:
+    - type: factuality
+      value: 'the user can cancel the order within 1 hour'
