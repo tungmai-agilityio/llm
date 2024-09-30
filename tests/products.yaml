@@ -1,0 +1,8 @@
+- vars:
+    query: 'Do you sell a laptop?'
+    context: file://files/product-categories.txt
+  assert:
+    - type: icontains
+      value: 'laptop'
+    - type: llm-rubric
+      value: 'Confirm that they sell the laptop'

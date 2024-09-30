@@ -1,0 +1,25 @@
+stages:
+  - test
+
+variables:
+  NODE_ENV: 'test'
+  PROMPTFOO_CONFIG: './promptfooconfig.yaml'
+  PROMPTFOO_RESULTS: './promptfoo-results.json'
+
+before_script:
+  - apt-get update && apt-get install -y curl
+  - curl -sL https://deb.nodesource.com/setup_16.x | bash -
+  - apt-get install -y nodejs
+  - npm install -g promptfoo
+
+test_promptfoo:
+  stage: test
+  script:
+    - echo "Running Promptfoo evaluations..."
+    - promptfoo evaluate --config $PROMPTFOO_CONFIG --output $PROMPTFOO_RESULTS
+  artifacts:
+    paths:
+      - promptfoo-results.json
+  only:
+    - main
+    - merge_requests

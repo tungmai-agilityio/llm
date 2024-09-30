@@ -1,0 +1,36 @@
+- vars:
+    query: 'What is the minimum order amount eligible for free shipping?'
+    context: file://files/shipping-info.txt
+  assert:
+    - type: contains
+      value: '$50'
+    # Pass if the LLM call costs less than $0.0002
+    - type: cost
+      threshold: 0.0002
+    - type: answer-relevance
+      threshold: 0.9
+    - type: context-relevance
+      threshold: 0.9
+    - type: context-faithfulness
+      threshold: 0.9
+
+- vars:
+    query: 'List supported shipping carriers'
+    context: file://files/shipping-info.txt
+  assert:
+    - type: regex
+      value: '(FedEx|UPS|USPS)'
+    - type: latency
+      threshold: 2000
+
+- vars:
+    query: 'Which shipping options are available?'
+    context: file://files/shipping-info.txt
+  assert:
+    - type: icontains-all
+      value:
+        - 'Standard'
+        - 'Expedited'
+        - 'Next-Day'
+    - type: llm-rubric
+      value: 'The response is related to e-commerce domain'

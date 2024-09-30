@@ -1,0 +1,7 @@
+Product Categories:
+- Electronics (tv, audio, smartphones, laptops, tablets, cameras, etc.)
+- Sports & fitness (camping, hiking, fitness, etc.)
+- Accessories (watches, sunglasses, etc.)
+- Home & Kitchen (appliances, furniture, decor, etc.)
+- Beauty & Personal Care
+- Books & Media
