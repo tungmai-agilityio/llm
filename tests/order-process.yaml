@@ -1,0 +1,31 @@
+- vars:
+    query: 'Please provide a step-by-step to make an order in bullet format'
+    context: file://files/order-process.json
+  assert:
+    - type: icontains-all
+      value:
+        - 'Browse and select products'
+        - 'Add products to cart'
+        - 'Proceed to checkout'
+        - 'Enter shipping and billing information'
+        - 'Choose payment method'
+        - 'Review and confirm order'
+        - 'Order placed successfully'
+    - type: llm-rubric
+      value: 'The answer includes the steps to make an order'
+    - type: cost
+      threshold: 0.0002
+    # Fail if the LLM call takes longer than 5 seconds
+    - type: latency
+      threshold: 5000
+
+- vars:
+    query: 'List all supported payment methods'
+    context: file://files/order-process.json
+  assert:
+    - type: icontains-all
+      value:
+        - 'Credit/Debit Card'
+        - 'PayPal'
+        - 'Apple Pay'
+        - 'Google Pay'

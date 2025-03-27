@@ -1,0 +1,23 @@
+- vars:
+    query: 'What is the policy to return an Electronics product?'
+    context: file://files/returns-and-refunds.csv
+  assert:
+    - type: icontains-all
+      value:
+        - 'unused'
+        - '30 days'
+        - 'original packaging'
+    - type: llm-rubric
+      value: 'Explains the policy to return a product'
+
+- vars:
+    query: 'List the return policy for all product categories'
+    context: file://files/returns-and-refunds.csv
+  assert:
+    - type: contains-all
+      value:
+        - 'Electronics'
+        - 'Clothing'
+        - 'Home & Kitchen'
+        - 'Beauty & Personal Care'
+        - 'Books & Media'
